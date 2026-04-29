@@ -54,7 +54,7 @@
           radial-gradient(1200px 800px at 20% -10%, rgba(59, 130, 246, 0.28), transparent 60%),
           radial-gradient(1000px 600px at 100% 10%, rgba(96, 165, 250, 0.2), transparent 55%),
           linear-gradient(180deg, var(--bg) 0%, #070b14 100%);
-        line-height: 1.55;
+        line-height: 1.68;
       }
 
       a {
@@ -86,7 +86,7 @@
         border: 1px solid transparent;
         font-weight: 600;
         letter-spacing: 0.2px;
-        transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease, border-color 160ms ease;
+        transition: transform 200ms ease, box-shadow 200ms ease, background-color 200ms ease, border-color 200ms ease, color 200ms ease;
         cursor: pointer;
         user-select: none;
         white-space: nowrap;
@@ -96,6 +96,40 @@
         transform: translateY(1px);
       }
 
+      .btn:hover {
+        transform: translateY(-1px) scale(1.02);
+      }
+
+      .btn.is-loading {
+        pointer-events: none;
+        opacity: 0.88;
+      }
+
+      .btn.is-loading .btn-label {
+        visibility: hidden;
+      }
+
+      .btn.is-loading::after {
+        content: "";
+        position: absolute;
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        border: 2px solid rgba(255, 255, 255, 0.35);
+        border-top-color: rgba(255, 255, 255, 0.95);
+        animation: btn-spin 0.7s linear infinite;
+      }
+
+      .btn {
+        position: relative;
+      }
+
+      @keyframes btn-spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
       .btn-primary {
         background: linear-gradient(135deg, var(--brand) 0%, #2563eb 100%);
         color: white;
@@ -103,8 +137,8 @@
       }
 
       .btn-primary:hover {
+        background: linear-gradient(135deg, #4f8ff9 0%, #2f6df0 100%);
         box-shadow: 0 18px 44px rgba(59, 130, 246, 0.3);
-        transform: translateY(-1px);
       }
 
       .btn-ghost {
@@ -114,9 +148,8 @@
       }
 
       .btn-ghost:hover {
-        background: rgba(255, 255, 255, 0.1);
+        background: rgba(255, 255, 255, 0.12);
         border-color: rgba(255, 255, 255, 0.22);
-        transform: translateY(-1px);
       }
 
       .btn-wide {
@@ -212,15 +245,23 @@
           align-items: center;
           gap: 10px;
         }
-        .nav-links,
-        .nav-cta {
+        .nav-links {
           display: none;
+        }
+        .nav-cta {
+          display: flex;
+        }
+        .nav-cta .btn-ghost {
+          display: none;
+        }
+        .nav-cta .btn-primary {
+          padding: 10px 12px;
+          font-size: 13px;
         }
         .nav-inner {
           padding: 10px 0;
         }
-        .nav.open .nav-links,
-        .nav.open .nav-cta {
+        .nav.open .nav-links {
           display: flex;
         }
         .nav.open .nav-inner {
@@ -244,7 +285,8 @@
         Sections
       ---------------------------------------------- */
       section {
-        padding: 72px 0;
+        padding: 90px 0;
+        position: relative;
       }
 
       .section-head {
@@ -252,7 +294,7 @@
         align-items: flex-end;
         justify-content: space-between;
         gap: 18px;
-        margin-bottom: 22px;
+        margin-bottom: 30px;
       }
 
       .kicker {
@@ -266,23 +308,32 @@
       h1,
       h2,
       h3 {
-        line-height: 1.12;
-        margin: 0 0 10px;
+        line-height: 1.16;
+        margin: 0 0 12px;
       }
 
       h1 {
-        font-size: clamp(34px, 4.2vw, 54px);
+        font-size: clamp(38px, 5vw, 62px);
         letter-spacing: -0.03em;
       }
 
       h2 {
-        font-size: clamp(24px, 2.6vw, 34px);
+        font-size: clamp(28px, 3.1vw, 42px);
         letter-spacing: -0.02em;
+      }
+
+      h3 {
+        font-size: clamp(18px, 2vw, 24px);
       }
 
       p {
         margin: 0;
         color: var(--muted);
+        line-height: 1.72;
+      }
+
+      main section:nth-of-type(even) {
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.015));
       }
 
       .muted {
@@ -306,7 +357,7 @@
         Hero
       ---------------------------------------------- */
       .hero {
-        padding: 64px 0 52px;
+        padding: 84px 0 68px;
       }
 
       .hero .container {
@@ -431,7 +482,7 @@
         How It Works
       ---------------------------------------------- */
       .how-it-works {
-        padding-top: 34px;
+        padding-top: 76px;
       }
 
       .how-grid {
@@ -448,6 +499,14 @@
         background: rgba(255, 255, 255, 0.05);
         display: grid;
         gap: 10px;
+        transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease, background-color 220ms ease;
+      }
+
+      .how-step:hover {
+        transform: translateY(-4px);
+        border-color: rgba(96, 165, 250, 0.3);
+        background: rgba(255, 255, 255, 0.07);
+        box-shadow: 0 18px 36px rgba(0, 0, 0, 0.28);
       }
 
       .how-icon {
@@ -488,7 +547,7 @@
         What You Get
       ---------------------------------------------- */
       .what-you-get {
-        padding-top: 30px;
+        padding-top: 76px;
       }
 
       .what-grid {
@@ -505,6 +564,14 @@
         background: rgba(255, 255, 255, 0.05);
         display: grid;
         gap: 10px;
+        transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease, background-color 220ms ease;
+      }
+
+      .what-card:hover {
+        transform: translateY(-4px);
+        border-color: rgba(96, 165, 250, 0.3);
+        background: rgba(255, 255, 255, 0.07);
+        box-shadow: 0 18px 36px rgba(0, 0, 0, 0.28);
       }
 
       .what-icon {
@@ -545,7 +612,7 @@
         See It In Action
       ---------------------------------------------- */
       .see-action {
-        padding-top: 28px;
+        padding-top: 76px;
       }
 
       .action-grid {
@@ -563,6 +630,13 @@
         box-shadow: 0 18px 46px rgba(0, 0, 0, 0.28);
         display: grid;
         gap: 12px;
+        transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
+      }
+
+      .action-card:hover {
+        transform: translateY(-4px);
+        border-color: rgba(96, 165, 250, 0.36);
+        box-shadow: 0 24px 52px rgba(0, 0, 0, 0.34);
       }
 
       .media-placeholder {
@@ -1383,7 +1457,7 @@
         Pricing
       ---------------------------------------------- */
       .pricing {
-        padding-top: 28px;
+        padding-top: 76px;
       }
 
       .pricing-card {
@@ -1396,6 +1470,13 @@
           radial-gradient(700px 320px at 15% 0%, rgba(59, 130, 246, 0.2), transparent 60%),
           linear-gradient(180deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.04));
         box-shadow: 0 24px 62px rgba(0, 0, 0, 0.38);
+        transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
+      }
+
+      .pricing-card:hover {
+        transform: translateY(-4px);
+        border-color: rgba(96, 165, 250, 0.42);
+        box-shadow: 0 30px 72px rgba(0, 0, 0, 0.42);
       }
 
       .pricing-value {
@@ -1457,7 +1538,7 @@
         FAQ
       ---------------------------------------------- */
       .faq {
-        padding-top: 28px;
+        padding-top: 76px;
       }
 
       .faq-list {
@@ -1471,6 +1552,14 @@
         border: 1px solid rgba(255, 255, 255, 0.12);
         background: rgba(255, 255, 255, 0.05);
         padding: 14px 16px;
+        transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease, background-color 220ms ease;
+      }
+
+      .faq-item:hover {
+        transform: translateY(-3px);
+        border-color: rgba(96, 165, 250, 0.3);
+        background: rgba(255, 255, 255, 0.07);
+        box-shadow: 0 14px 30px rgba(0, 0, 0, 0.24);
       }
 
       .faq-item h3 {
@@ -1527,6 +1616,131 @@
         }
       }
 
+      @media (max-width: 768px) {
+        section {
+          padding: 72px 0;
+        }
+
+        .section-head {
+          margin-bottom: 22px;
+        }
+
+        h1 {
+          font-size: clamp(32px, 8vw, 42px);
+        }
+
+        h2 {
+          font-size: clamp(24px, 6vw, 32px);
+        }
+      }
+
+      @media (max-width: 480px) {
+        .container {
+          padding: 0 14px;
+        }
+
+        section {
+          padding: 58px 0;
+        }
+
+        .section-head {
+          margin-bottom: 18px;
+          gap: 10px;
+        }
+
+        p {
+          font-size: 15px;
+          line-height: 1.68;
+        }
+
+        .kicker {
+          font-size: 11px;
+          letter-spacing: 0.1em;
+        }
+
+        h1 {
+          font-size: 30px;
+          line-height: 1.2;
+        }
+
+        h2 {
+          font-size: 24px;
+          line-height: 1.25;
+        }
+
+        h3 {
+          font-size: 18px;
+        }
+
+        .btn {
+          min-height: 48px;
+          padding: 13px 16px;
+          font-size: 15px;
+        }
+
+        .hero-actions,
+        .download-actions,
+        .kit-secondary,
+        .creator-actions {
+          display: grid;
+          grid-template-columns: 1fr;
+          width: 100%;
+        }
+
+        .hero-actions .btn,
+        .download-actions .btn,
+        .kit-secondary .btn,
+        .creator-actions .btn {
+          width: 100%;
+          justify-content: center;
+        }
+
+        .hero-badges {
+          gap: 8px;
+        }
+
+        .badge {
+          font-size: 12px;
+          padding: 7px 9px;
+        }
+
+        .kit-dominant,
+        .pricing-card,
+        .download-convert {
+          padding: 16px;
+        }
+
+        .kit-buyrow {
+          align-items: stretch;
+        }
+
+        .kit-price {
+          width: 100%;
+        }
+
+        .nav-cta .btn-primary {
+          min-height: 42px;
+          font-size: 12.5px;
+          padding: 9px 10px;
+        }
+
+        .whatsapp-float {
+          right: 14px;
+          bottom: 14px;
+          width: 52px;
+          height: 52px;
+          font-size: 24px;
+        }
+
+        .scroll-top-float {
+          right: 14px;
+          bottom: 74px;
+          width: 44px;
+          height: 44px;
+          font-size: 20px;
+        }
+      }
+
       .whatsapp-float {
         position: fixed;
         right: 18px;
@@ -1551,14 +1765,55 @@
         box-shadow: 0 20px 40px rgba(0, 0, 0, 0.42);
       }
 
+      .scroll-top-float {
+        position: fixed;
+        right: 18px;
+        bottom: 84px;
+        z-index: 89;
+        width: 48px;
+        height: 48px;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 255, 255, 0.22);
+        background: rgba(15, 26, 51, 0.9);
+        color: #fff;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 22px;
+        cursor: pointer;
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.32);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(8px);
+        transition: opacity 180ms ease, transform 180ms ease, visibility 180ms ease, background-color 180ms ease;
+      }
+
+      .scroll-top-float:hover {
+        background: rgba(59, 130, 246, 0.9);
+      }
+
+      .scroll-top-float.show {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+
       /* ---------------------------------------------
         Fade-in animation (applied via JS)
       ---------------------------------------------- */
       .reveal {
         opacity: 0;
-        transform: translateY(14px);
-        transition: opacity 650ms ease, transform 650ms ease;
+        transform: translateY(0);
+        transition: opacity 280ms ease, transform 280ms ease;
         will-change: opacity, transform;
+      }
+
+      .reveal-section {
+        transform: translateY(0);
+      }
+
+      .reveal-card {
+        transform: translateY(10px);
       }
 
       .reveal.in-view {
@@ -1620,12 +1875,12 @@
               </svg>
               Download
             </a>
-            <a class="btn btn-primary" href="#kit">
+            <a class="btn btn-primary" href="#pricing">
               <svg class="btn-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                 <path d="M6 7h15l-1.5 8.5a3 3 0 0 1-3 2.5H9a3 3 0 0 1-3-2.5L4 4H2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
                 <path d="M9.5 21a1 1 0 1 0 0.01 0ZM17.5 21a1 1 0 1 0 0.01 0Z" fill="currentColor" />
               </svg>
-              Buy Kit
+              Buy Kit - ₹5999
             </a>
           </div>
         </div>
@@ -2273,7 +2528,7 @@
               <span>RoboLearn</span>
             </div>
             <p>Beginner-friendly robotics tutorials using ESP32. Learn, build, demo, and grow your skills with confidence.</p>
-            <div class="copyright">© 2026 RoboLearn Labs. All rights reserved.</div>
+            <div class="copyright">© <span id="year">2026</span> RoboLearn Labs. All rights reserved.</div>
             <div class="small" style="margin-top: 8px;">RoboLearn is a product by RoboLearn Labs</div>
           </div>
 
@@ -2308,6 +2563,10 @@
       <span aria-hidden="true">💬</span>
     </a>
 
+    <button class="scroll-top-float" id="scrollTopBtn" type="button" aria-label="Scroll to top">
+      <span aria-hidden="true">↑</span>
+    </button>
+
     <script>
       // Navbar mobile toggle
       const nav = document.querySelector(".nav");
@@ -2328,7 +2587,21 @@
         navToggle?.setAttribute("aria-expanded", "false");
       });
 
-      // Fade-in on scroll (simple, lightweight)
+      // Fade/slide on scroll (fast and minimal)
+      const cardRevealSelectors =
+        ".project-card, .highlight-card, .how-step, .what-card, .action-card, .journey-step, .kit-highlight, .faq-item, .pricing-card, .quote";
+      document.querySelectorAll(cardRevealSelectors).forEach((el) => {
+        if (!el.classList.contains("reveal")) el.classList.add("reveal");
+        el.classList.add("reveal-card");
+      });
+
+      const sectionRevealSelectors =
+        "section > .container > .section-head, .hero-text, .hero-image, .kit-dominant, .creator-card, .footer-grid";
+      document.querySelectorAll(sectionRevealSelectors).forEach((el) => {
+        if (!el.classList.contains("reveal")) el.classList.add("reveal");
+        el.classList.add("reveal-section");
+      });
+
       const revealEls = document.querySelectorAll(".reveal");
       const io = new IntersectionObserver(
         (entries) => {
@@ -2339,9 +2612,57 @@
             }
           }
         },
-        { threshold: 0.12 }
+        { threshold: 0.1 }
       );
       revealEls.forEach((el) => io.observe(el));
+
+      // Floating scroll-to-top button
+      const scrollTopBtn = document.getElementById("scrollTopBtn");
+      const toggleScrollTop = () => {
+        if (!scrollTopBtn) return;
+        const shouldShow = window.scrollY > 320;
+        scrollTopBtn.classList.toggle("show", shouldShow);
+      };
+      window.addEventListener("scroll", toggleScrollTop, { passive: true });
+      toggleScrollTop();
+      scrollTopBtn?.addEventListener("click", () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+
+      // Loading feedback for Buy/Download buttons
+      const actionButtons = document.querySelectorAll(".btn");
+      actionButtons.forEach((btn) => {
+        const labelText = (btn.textContent || "").trim();
+        btn.innerHTML = `<span class="btn-label">${btn.innerHTML}</span>`;
+
+        const ariaLabel = (btn.getAttribute("aria-label") || "").toLowerCase();
+        const normalized = labelText.toLowerCase();
+        const shouldShowLoading = /buy|download/.test(normalized) || /buy|download/.test(ariaLabel);
+        if (!shouldShowLoading) return;
+
+        btn.addEventListener("click", (event) => {
+          const href = btn.getAttribute("href");
+          if (!href) return;
+
+          event.preventDefault();
+          if (btn.classList.contains("is-loading")) return;
+          btn.classList.add("is-loading");
+          btn.setAttribute("aria-disabled", "true");
+
+          window.setTimeout(() => {
+            btn.classList.remove("is-loading");
+            btn.removeAttribute("aria-disabled");
+
+            if (href === "#") return;
+            if (href.startsWith("#")) {
+              const target = document.querySelector(href);
+              target?.scrollIntoView({ behavior: "smooth" });
+              return;
+            }
+            window.location.href = href;
+          }, 700);
+        });
+      });
 
       // Footer year
       document.getElementById("year").textContent = String(new Date().getFullYear());
